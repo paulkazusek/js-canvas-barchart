@@ -1,7 +1,6 @@
 class Rectangle {
 
     constructor ( x = 0, y = 0, width = 0, height = 0, fillColor = '', strokeColor = '', strokeWidth = 2 ) {
-        // ensure the arguments passed in are numbers
         this.x = Number( x )
         this.y = Number( y )
         this.width = Number( width )
@@ -12,29 +11,20 @@ class Rectangle {
       }
 
       draw ( ctx ) {
-        // destructuring
         const { x, y, width, height, fillColor, strokeColor, strokeWidth } = this
     
-        // saves the current styles set elsewhere
-        // to avoid overwriting them
         ctx.save()
     
-        // set the styles for this shape
         ctx.fillStyle = fillColor
         ctx.lineWidth = strokeWidth
     
-        // create the *path*
         ctx.beginPath()
         ctx.strokeStyle = strokeColor
         ctx.rect( x, y, width, height )
     
-        // draw the path to screen
         ctx.fill()
         ctx.stroke()
-    
-        // restores the styles from earlier
-        // preventing the colors used here
-        // from polluting other drawings
+
         ctx.restore()
     }
 }
@@ -121,7 +111,6 @@ class BarChart {
       maxValue = Math.max(maxValue, data[index].value);
     }
 
-    //drawing the grid lines
     let gridValue = 0;
     while ( gridValue <= maxValue ) {
       var gridY = canvasActualHeight * ( 1 - gridValue / maxValue ) + padding.top;
@@ -130,7 +119,6 @@ class BarChart {
       gridValue += gridScale;
     }
 
-    //drawing the bars
     let barIndex = 0
     const numberOfBars = Object.keys(data).length
     const barSize = canvasActualWidth / numberOfBars
